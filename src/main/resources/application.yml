@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: desenvolvimento
+
+server:
+  port: 80
+  compression:
+    enable: true
