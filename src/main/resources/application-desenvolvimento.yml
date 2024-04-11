@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     url: jdbc:oracle:${DB_DESENV_SERVER:thin:@oracle.fiap.com.br}:${DB_DESENV_PORT:1521}:${DB_DESENV_NAME:ORCL}
@@ -8,4 +7,3 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
-
