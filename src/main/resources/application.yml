@@ -1,9 +1,10 @@
-spring.application.name=java_challenge
+server:
+  port: 80
 spring:
   profiles:
     active: desenvolvimento
+  jpa:
+    open-in-view: false
 
-server:
-  port: 80
-  compression:
-    enable: true
+  thymeleaf:
+    check-template-location: false
