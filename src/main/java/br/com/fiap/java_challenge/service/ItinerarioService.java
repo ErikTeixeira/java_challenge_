@@ -10,28 +10,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Objects;
-
+import java.util.stream.Collectors;
 
 @Service
 public class ItinerarioService implements ServiceDTO<Itinerario, ItinerarioRequest, ItinerarioResponse, AbstractRequest> {
-
-    @Autowired
-    UsuarioService usuarioService;
 
 
     @Autowired
     private ItinerarioRepository repo;
 
-
     @Override
-    public ItinerarioResponse toResponse(Itinerario i) {
-
-
+    public ItinerarioResponse toResponse(Itinerario itinerario) {
         return new ItinerarioResponse(
-                i.getId(),
-                i.getDescricao(),
-                usuarioService.toResponse(i.getUsuarios()
-                )
+                itinerario.getId(),
+                itinerario.getDescricao()
         );
     }
 
@@ -42,10 +34,11 @@ public class ItinerarioService implements ServiceDTO<Itinerario, ItinerarioReque
                 .build();
     }
 
-
     @Override
-    public Collection<ItinerarioResponse> toResponse(Collection<Itinerario> entity) {
-        return entity.stream().map(this::toResponse).toList();
+    public Collection<ItinerarioResponse> toResponse(Collection<Itinerario> itinerarios) {
+        return itinerarios.stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -60,7 +53,7 @@ public class ItinerarioService implements ServiceDTO<Itinerario, ItinerarioReque
 
     @Override
     public Itinerario findByAbstractRequest(AbstractRequest a) {
-        if (Objects.isNull(a)) return null;
+        if (Objects.isNull(a) || Objects.isNull(a.id())) return null;
         return repo.findById(a.id()).orElse(null);
     }
 

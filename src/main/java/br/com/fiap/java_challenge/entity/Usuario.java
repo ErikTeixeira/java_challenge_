@@ -52,12 +52,12 @@ public class Usuario {
                             name = "ITINERARIO",
                             referencedColumnName = "ID_ITINERARIO",
                             foreignKey = @ForeignKey(
-                                    name = "FK_ITINERARIO_USUARIO"
+                                    name = "FK_ITINERARIO_ITINERARIO"
                             )
                     )
             }
     )
-    private Set<Itinerario> itinerario = new LinkedHashSet<>();
+    private Set<Itinerario> itinerarios = new LinkedHashSet<>();
 
 
 

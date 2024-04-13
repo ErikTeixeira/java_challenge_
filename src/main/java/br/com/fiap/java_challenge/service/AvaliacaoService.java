@@ -55,7 +55,8 @@ public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest,
     }
 
     @Override
-    public Avaliacao save(Avaliacao avaliacao) {
+    public Avaliacao save(Avaliacao avaliacao)
+    {
         return repo.save(avaliacao);
     }
 }

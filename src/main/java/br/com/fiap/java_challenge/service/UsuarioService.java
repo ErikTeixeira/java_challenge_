@@ -3,6 +3,7 @@ package br.com.fiap.java_challenge.service;
 import br.com.fiap.java_challenge.dto.request.AbstractRequest;
 import br.com.fiap.java_challenge.dto.request.UsuarioRequest;
 import br.com.fiap.java_challenge.dto.response.UsuarioResponse;
+import br.com.fiap.java_challenge.entity.Avaliacao;
 import br.com.fiap.java_challenge.entity.Usuario;
 import br.com.fiap.java_challenge.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
                 u.getEmail(),
                 u.getIdade(),
                 u.getGenero(),
-                itinerarioService.toResponse(u.getItinerario()
+                itinerarioService.toResponse(u.getItinerarios()
                 )
         );
     }
@@ -69,9 +70,8 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     }
 
     @Override
-    public Usuario save(Usuario usuario) {
-        // Salvando os relacionamentos de itinerários
-        usuario.getItinerario().forEach(itinerario -> itinerario.getUsuarios().add(usuario));
+    public Usuario save(Usuario usuario)
+    {
         return repo.save(usuario);
     }
 }
