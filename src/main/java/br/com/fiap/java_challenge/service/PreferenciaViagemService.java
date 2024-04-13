@@ -64,15 +64,18 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
 
     @Override
     public PreferenciaViagem findByAbstractRequest(AbstractRequest a) {
+
         return repo.findById(a.id()).orElse(null);
     }
 
     @Override
     public PreferenciaViagem save(PreferenciaViagem telefone) {
+
         return repo.save(telefone);
     }
 
     public List<PreferenciaViagem> findByUsuarioId(Long id) {
+
         return  repo.findByUsuarioId(id);
     }
 }

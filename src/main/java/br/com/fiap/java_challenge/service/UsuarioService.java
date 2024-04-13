@@ -3,7 +3,6 @@ package br.com.fiap.java_challenge.service;
 import br.com.fiap.java_challenge.dto.request.AbstractRequest;
 import br.com.fiap.java_challenge.dto.request.UsuarioRequest;
 import br.com.fiap.java_challenge.dto.response.UsuarioResponse;
-import br.com.fiap.java_challenge.entity.Avaliacao;
 import br.com.fiap.java_challenge.entity.Usuario;
 import br.com.fiap.java_challenge.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

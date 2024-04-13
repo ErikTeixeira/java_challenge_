@@ -1,12 +1,9 @@
 package br.com.fiap.java_challenge.resource;
 
-import br.com.fiap.java_challenge.dto.request.EstabelecimentoRequest;
+
 import br.com.fiap.java_challenge.dto.request.ItinerarioRequest;
-import br.com.fiap.java_challenge.dto.response.EstabelecimentoResponse;
 import br.com.fiap.java_challenge.dto.response.ItinerarioResponse;
-import br.com.fiap.java_challenge.entity.Estabelecimento;
 import br.com.fiap.java_challenge.entity.Itinerario;
-import br.com.fiap.java_challenge.service.EstabelecimentoService;
 import br.com.fiap.java_challenge.service.ItinerarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
