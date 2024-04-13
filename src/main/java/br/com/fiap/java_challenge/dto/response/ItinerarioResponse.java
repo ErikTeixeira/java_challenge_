@@ -7,5 +7,6 @@ public record ItinerarioResponse(
 
         Long id,
         String descricao
+
 ) {
 }
