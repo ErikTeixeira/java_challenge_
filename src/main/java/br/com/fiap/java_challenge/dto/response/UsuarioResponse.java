@@ -1,6 +1,5 @@
 package br.com.fiap.java_challenge.dto.response;
 
-import br.com.fiap.java_challenge.entity.Itinerario;
 import lombok.Builder;
 
 import java.util.Collection;
@@ -12,6 +11,7 @@ public record UsuarioResponse(
         String email,
         Integer idade,
         String genero,
+
         Collection<ItinerarioResponse> itinerario
 
 ) {
