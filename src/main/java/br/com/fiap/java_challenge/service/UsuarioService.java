@@ -18,6 +18,9 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     ItinerarioService itinerarioService;
 
     @Autowired
+    EstabelecimentoService estabelecimentoService;
+
+    @Autowired
     private UsuarioRepository repo;
 
 
@@ -30,9 +33,9 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
                 u.getEmail(),
                 u.getIdade(),
                 u.getGenero(),
-                itinerarioService.toResponse(u.getItinerarios()
-                )
-        );
+                itinerarioService.toResponse(u.getItinerarios()),
+                estabelecimentoService.toResponse(u.getEstabelecimentos())
+                );
     }
 
     @Override

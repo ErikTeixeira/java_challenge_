@@ -52,13 +52,38 @@ public class Usuario {
                             name = "ITINERARIO",
                             referencedColumnName = "ID_ITINERARIO",
                             foreignKey = @ForeignKey(
-                                    name = "FK_ITINERARIO_ITINERARIO"
+                                    name = "FK_ITINERARIO_USUARIO"
                             )
                     )
             }
     )
     private Set<Itinerario> itinerarios = new LinkedHashSet<>();
 
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "TB_ESTABELECIMENTO_USUARIO",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "USUARIO",
+                            referencedColumnName = "ID_USUARIO",
+                            foreignKey = @ForeignKey(
+                                    name = "FK_USUARIO_ESTABELECIMENTO"
+                            )
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "ESTABELECIMENTO",
+                            referencedColumnName = "ID_ESTABELECIMENTO",
+                            foreignKey = @ForeignKey(
+                                    name = "FK_ESTABELECIMENTO_USUARIO"
+                            )
+                    )
+            }
+    )
+    private Set<Estabelecimento> estabelecimentos = new LinkedHashSet<>();
 
 
 }
