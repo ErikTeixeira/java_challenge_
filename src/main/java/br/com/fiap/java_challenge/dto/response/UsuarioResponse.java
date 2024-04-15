@@ -12,9 +12,9 @@ public record UsuarioResponse(
         Integer idade,
         String genero,
 
-        Collection<ItinerarioResponse> itinerario,
+        Collection<EstabelecimentoResponse> estabelecimento,
 
-        Collection<EstabelecimentoResponse> estabelecimento
+        PreferenciaViagemResponse preferenciaViagem
 
 ) {
 }

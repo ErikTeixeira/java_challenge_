@@ -10,7 +10,6 @@ public record EstabelecimentoResponse(
         Long id,
         String nome,
         String cep,
-        String tipo_estabelecimento,
-        Collection<AvaliacaoResponse> avaliacao
+        String tipo_estabelecimento
 ) {
 }

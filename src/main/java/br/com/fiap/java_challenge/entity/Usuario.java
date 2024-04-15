@@ -37,32 +37,6 @@ public class Usuario {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-            name = "TB_ITINERARIO_USUARIO",
-            joinColumns = {
-                    @JoinColumn(
-                            name = "USUARIO",
-                            referencedColumnName = "ID_USUARIO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_USUARIO_ITINERARIO"
-                            )
-                    )
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(
-                            name = "ITINERARIO",
-                            referencedColumnName = "ID_ITINERARIO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_ITINERARIO_USUARIO"
-                            )
-                    )
-            }
-    )
-    private Set<Itinerario> itinerarios = new LinkedHashSet<>();
-
-
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(
             name = "TB_ESTABELECIMENTO_USUARIO",
             joinColumns = {
                     @JoinColumn(
@@ -84,6 +58,18 @@ public class Usuario {
             }
     )
     private Set<Estabelecimento> estabelecimentos = new LinkedHashSet<>();
+
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(
+            name = "PREFERENCIA_VIAGEM",
+            referencedColumnName = "ID_PREFERENCIAVIAGEM",
+            foreignKey = @ForeignKey(
+                    name = "FK_USUARIO_PREFERENCIA_VIAGEM"
+            )
+    )
+    private PreferenciaViagem preferenciaViagem;
+
 
 
 }

@@ -15,16 +15,21 @@ import java.util.stream.Collectors;
 @Service
 public class ItinerarioService implements ServiceDTO<Itinerario, ItinerarioRequest, ItinerarioResponse, AbstractRequest> {
 
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Autowired
     private ItinerarioRepository repo;
 
     @Override
     public ItinerarioResponse toResponse(Itinerario itinerario) {
-        return new ItinerarioResponse(
-                itinerario.getId(),
-                itinerario.getDescricao()
-        );
+
+        var usuario = usuarioService.toResponse(itinerario.getUsuarios());
+
+        return ItinerarioResponse.builder()
+                .usuario(usuario)
+                .descricao(itinerario.getDescricao())
+                .build();
     }
 
     @Override
@@ -61,4 +66,6 @@ public class ItinerarioService implements ServiceDTO<Itinerario, ItinerarioReque
     public Itinerario save(Itinerario itinerario) {
         return repo.save(itinerario);
     }
+
+
 }

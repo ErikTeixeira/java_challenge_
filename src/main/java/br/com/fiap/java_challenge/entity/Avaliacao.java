@@ -26,4 +26,14 @@ public class Avaliacao {
 
     private Long nota;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(
+            name = "ESTABELECIMENTO",
+            referencedColumnName = "ID_ESTABELECIMENTO",
+            foreignKey = @ForeignKey(
+                    name = "FK_AVALIACAO_ESTABELECIMENTO"
+            )
+    )
+    private Estabelecimento estabelecimento;
+
 }

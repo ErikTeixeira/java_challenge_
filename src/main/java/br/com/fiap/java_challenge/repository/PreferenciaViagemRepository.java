@@ -10,6 +10,4 @@ import java.util.List;
 @Repository
 public interface PreferenciaViagemRepository extends JpaRepository<PreferenciaViagem, Long> {
 
-    List<PreferenciaViagem> findByUsuarioId(Long id);
-
 }

@@ -9,16 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Service
 public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, UsuarioResponse, AbstractRequest> {
 
     @Autowired
-    ItinerarioService itinerarioService;
+    private PreferenciaViagemService preferenciaViagemService;
 
     @Autowired
-    EstabelecimentoService estabelecimentoService;
+    private EstabelecimentoService estabelecimentoService;
 
     @Autowired
     private UsuarioRepository repo;
@@ -27,15 +29,17 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     @Override
     public UsuarioResponse toResponse(Usuario u) {
 
-        return new UsuarioResponse(
-                u.getId(),
-                u.getNome(),
-                u.getEmail(),
-                u.getIdade(),
-                u.getGenero(),
-                itinerarioService.toResponse(u.getItinerarios()),
-                estabelecimentoService.toResponse(u.getEstabelecimentos())
-                );
+        var estabelecimento = estabelecimentoService.toResponse(u.getEstabelecimentos());
+        var prefereciaViagem = preferenciaViagemService.toResponse(u.getPreferenciaViagem());
+
+        return UsuarioResponse.builder()
+                .estabelecimento(estabelecimento)
+                .preferenciaViagem(prefereciaViagem)
+                .nome(u.getNome())
+                .email(u.getEmail())
+                .idade(u.getIdade())
+                .genero(u.getGenero())
+                .build();
     }
 
     @Override
@@ -50,6 +54,9 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
 
     @Override
     public Collection<UsuarioResponse> toResponse(Collection<Usuario> entity) {
+        if (entity == null) {
+            return Collections.emptyList();
+        }
         return entity.stream().map(this::toResponse).toList();
     }
 
@@ -75,5 +82,10 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     public Usuario save(Usuario usuario)
     {
         return repo.save(usuario);
+    }
+
+
+    public List<Usuario> findByPreferenciaViagemId(Long id) {
+        return repo.findByPreferenciaViagemId(id);
     }
 }

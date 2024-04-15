@@ -1,17 +1,26 @@
 package br.com.fiap.java_challenge.resource;
 
+import br.com.fiap.java_challenge.dto.request.AvaliacaoRequest;
+import br.com.fiap.java_challenge.dto.request.EnderecoRequest;
 import br.com.fiap.java_challenge.dto.request.EstabelecimentoRequest;
+import br.com.fiap.java_challenge.dto.response.AvaliacaoResponse;
+import br.com.fiap.java_challenge.dto.response.EnderecoResponse;
 import br.com.fiap.java_challenge.dto.response.EstabelecimentoResponse;
-import br.com.fiap.java_challenge.entity.Estabelecimento;
+import br.com.fiap.java_challenge.service.AvaliacaoService;
 import br.com.fiap.java_challenge.service.EstabelecimentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Collections;
+
+import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/estabelecimento")
@@ -20,24 +29,67 @@ public class EstabelecimentoResource {
     @Autowired
     EstabelecimentoService service;
 
+    @Autowired
+    private AvaliacaoService avaliacaoService;
+
     @GetMapping
-    public List<EstabelecimentoResponse> findAll(@PathVariable Long id ) {
-        Estabelecimento estabelecimento = service.findById(id);
-        return Collections.singletonList(service.toResponse(estabelecimento));
+    public List<EstabelecimentoResponse> findAll() {
+        return service.findAll().stream().map(service::toResponse).toList();
     }
 
     @GetMapping(value = "/{id}")
     public EstabelecimentoResponse findById(@PathVariable Long id) {
-        Estabelecimento estabelecimento = service.findById(id);
-        return service.toResponse((estabelecimento));
+        return service.toResponse(service.findById(id));
     }
 
     @Transactional
     @PostMapping
-    public EstabelecimentoResponse save(@RequestBody @Valid EstabelecimentoRequest estabelecimento ) {
-        if (Objects.isNull(estabelecimento)) return null;
-        Estabelecimento save = service.save(service.toEntity(estabelecimento));
-        return service.toResponse(save);
+    public ResponseEntity<EstabelecimentoResponse> save(@RequestBody @Valid EstabelecimentoRequest estabelecimento) {
+        var entity = service.toEntity(estabelecimento);
+        var salvo = service.save(entity);
+        var response = service.toResponse(salvo);
+
+        var uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(response.id())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(response);
+
+    }
+
+
+    @Transactional
+    @PostMapping(value = "/{id}/avaliacao")
+    public ResponseEntity<AvaliacaoResponse> save(@PathVariable Long id, @RequestBody @Valid AvaliacaoRequest avaliacao) {
+
+        var estabelecimento = service.findById(id);
+
+        if (Objects.isNull(avaliacao)) return ResponseEntity.badRequest().build();
+
+        var entity = avaliacaoService.toEntity(avaliacao);
+
+        entity.setEstabelecimento(estabelecimento);
+
+        var saved = avaliacaoService.save(entity);
+        var response = avaliacaoService.toResponse(saved);
+
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .path("/{id}")
+                .buildAndExpand(saved.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(response);
+    }
+
+
+    @GetMapping(value = "/{id}/avaliacao")
+    public ResponseEntity<Collection<AvaliacaoResponse>> findAvaliacaoByEstabelecimento(@PathVariable Long id) {
+        var estabelecimnto = avaliacaoService.findByEstabelecimentoId(id);
+        var response = avaliacaoService.toResponse(estabelecimnto);
+        return ResponseEntity.ok(response);
     }
 
 }

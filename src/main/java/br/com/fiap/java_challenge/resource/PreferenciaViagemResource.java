@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/preferencia_viagem")
@@ -21,9 +22,11 @@ public class PreferenciaViagemResource {
     PreferenciaViagemService service;
 
     @GetMapping
-    public List<PreferenciaViagemResponse> findAll(@PathVariable Long id ) {
-        PreferenciaViagem preferenciaViagem = service.findById(id);
-        return Collections.singletonList(service.toResponse(preferenciaViagem));
+    public List<PreferenciaViagemResponse> findAll() {
+        List<PreferenciaViagem> preferenciaViagems = (List<PreferenciaViagem>) service.findAll();
+        return preferenciaViagems.stream()
+                .map(service::toResponse)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}")
