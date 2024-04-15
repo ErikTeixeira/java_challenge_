@@ -4,7 +4,6 @@ import br.com.fiap.java_challenge.dto.request.EnderecoRequest;
 import br.com.fiap.java_challenge.dto.request.UsuarioRequest;
 import br.com.fiap.java_challenge.dto.response.EnderecoResponse;
 import br.com.fiap.java_challenge.dto.response.UsuarioResponse;
-import br.com.fiap.java_challenge.entity.Usuario;
 import br.com.fiap.java_challenge.service.EnderecoService;
 import br.com.fiap.java_challenge.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -16,10 +15,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/usuario")

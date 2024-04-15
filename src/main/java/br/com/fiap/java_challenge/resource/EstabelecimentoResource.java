@@ -1,10 +1,8 @@
 package br.com.fiap.java_challenge.resource;
 
 import br.com.fiap.java_challenge.dto.request.AvaliacaoRequest;
-import br.com.fiap.java_challenge.dto.request.EnderecoRequest;
 import br.com.fiap.java_challenge.dto.request.EstabelecimentoRequest;
 import br.com.fiap.java_challenge.dto.response.AvaliacaoResponse;
-import br.com.fiap.java_challenge.dto.response.EnderecoResponse;
 import br.com.fiap.java_challenge.dto.response.EstabelecimentoResponse;
 import br.com.fiap.java_challenge.service.AvaliacaoService;
 import br.com.fiap.java_challenge.service.EstabelecimentoService;
@@ -20,7 +18,6 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/estabelecimento")

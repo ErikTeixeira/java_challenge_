@@ -85,7 +85,4 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     }
 
 
-    public List<Usuario> findByPreferenciaViagemId(Long id) {
-        return repo.findByPreferenciaViagemId(id);
-    }
 }
