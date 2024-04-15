@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "386044d7-6ef8-4699-a0a7-9ae1d31f704f",
+		"name": "java_challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30957512"
+	},
+	"item": [
+		{
+			"name": "Estabelecimento",
+			"item": [
+				{
+					"name": "localhost/estabelecimento",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Museu de Arte de São Paulo Assis Chateaubriand (MASP)\",\r\n    \"cep\": \"01310-000\",\r\n    \"tipo_estabelecimento\": \"Museu de Arte\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/estabelecimento",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/estabelecimento/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Museu de Arte de São Paulo Assis Chateaubriand (MASP)\",\r\n    \"cep\": \"01310-000\",\r\n    \"tipo_estabelecimento\": \"Museu de Arte\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/estabelecimento/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/estabelecimento/1/avaliacao",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Museu de Arte de São Paulo Assis Chateaubriand (MASP)\",\r\n    \"cep\": \"01310-000\",\r\n    \"tipo_estabelecimento\": \"Museu de Arte\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/estabelecimento/1/avaliacao",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimento",
+								"1",
+								"avaliacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "estabelecimento/1/avaliacao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"comentario\": \"muito bonito as obras\",\r\n  \"nota\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "estabelecimento/1/avaliacao",
+							"host": [
+								"estabelecimento"
+							],
+							"path": [
+								"1",
+								"avaliacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/estabelecimento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"masp\",\r\n  \"cep\": \"01310-200\",\r\n  \"tipo_estabelecimento\": \"museu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/estabelecimento",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Itinerario",
+			"item": [
+				{
+					"name": "localhost/itinerario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/itinerario",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/itinerario/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/itinerario/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/itinerario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\":\"Explore a história no centro histórico, mergulhe na arte e cultura, delicie-se com a gastronomia local, desfrute da natureza no Parque Ibirapuera e termine com compras e entretenimento.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/itinerario",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PreferenciaViagem",
+			"item": [
+				{
+					"name": "localhost/preferencia_viagem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/preferencia_viagem",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"preferencia_viagem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/preferencia_viagem/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/preferencia_viagem/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"preferencia_viagem",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/preferencia_viagem",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tipo_culinaria\": \"africana\",\r\n  \"restricoes_alimentares\": \"\",\r\n  \"tipo_transporte\": \"carro\",\r\n  \"tipo_hospedagem\": \"hotel\",\r\n  \"viaja_sozinho\": \"sim\",\r\n  \"usuario\": {\r\n    \"id\": \"1\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/preferencia_viagem",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"preferencia_viagem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "localhost/usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/usuario",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/usuario/1/endereco",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/usuario/1/endereco",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuario",
+								"1",
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/usuario/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/usuario/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"erik\",\r\n  \"email\": \"erik@gmail.com\",\r\n  \"idade\": 19,\r\n  \"genero\": \"m\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/usuario",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost/usuario/1/endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cep\": \"02145-450\",\r\n  \"numero\": \"100\",\r\n  \"complemento\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/usuario/1/endereco",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuario",
+								"1",
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

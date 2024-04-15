@@ -35,14 +35,4 @@ public class PreferenciaViagem {
     private String viaja_sozinho;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(
-            name = "USUARIO",
-            referencedColumnName = "ID_USUARIO",
-            foreignKey = @ForeignKey(
-                    name = "FK_PREFERENCIA_VIAGEM_USUARIO"
-            )
-    )
-    private Usuario usuario;
-
 }

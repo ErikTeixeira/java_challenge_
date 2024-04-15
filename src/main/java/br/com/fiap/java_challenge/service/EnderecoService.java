@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -47,6 +48,9 @@ public class EnderecoService implements ServiceDTO<Endereco, EnderecoRequest, En
 
     @Override
     public Collection<EnderecoResponse> toResponse(Collection<Endereco> entity) {
+        if (entity == null) {
+            return Collections.emptyList();
+        }
         return entity.stream().map(this::toResponse).toList();
     }
 

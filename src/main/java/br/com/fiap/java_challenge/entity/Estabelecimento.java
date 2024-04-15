@@ -6,9 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,29 +30,5 @@ public class Estabelecimento {
 
     private String tipo_estabelecimento;
 
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(
-            name = "TB_AVALIACAO_ESTABELECIMENTO",
-            joinColumns = {
-                    @JoinColumn(
-                            name = "ESTABELECIMENTO",
-                            referencedColumnName = "ID_ESTABELECIMENTO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_ESTABELECIMENTO_AVALIACAO"
-                            )
-                    )
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(
-                            name = "AVALIACAO",
-                            referencedColumnName = "ID_AVALIACAO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_AVALIACAO_ESTABELECIMENTO"
-                            )
-                    )
-            }
-    )
-    private Set<Avaliacao> avaliacao = new LinkedHashSet<>();
 
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 @Service
 public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, PreferenciaViagemRequest, PreferenciaViagemResponse, AbstractRequest> {
@@ -17,13 +17,11 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
     @Autowired
     private PreferenciaViagemRepository repo;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
     @Override
     public PreferenciaViagemResponse toResponse(PreferenciaViagem preferenciaViagem) {
-
-        var usuario = usuarioService.toResponse(preferenciaViagem.getUsuario());
+        if (preferenciaViagem == null) {
+            return null;
+        }
 
         return PreferenciaViagemResponse.builder()
                 .id(preferenciaViagem.getId())
@@ -32,7 +30,6 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
                 .tipo_transporte(preferenciaViagem.getTipo_transporte())
                 .tipo_hospedagem(preferenciaViagem.getTipo_hospedagem())
                 .viaja_sozinho(preferenciaViagem.getViaja_sozinho())
-                .usuario(usuario)
                 .build();
     }
 
@@ -49,6 +46,9 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
 
     @Override
     public Collection<PreferenciaViagemResponse> toResponse(Collection<PreferenciaViagem> entity) {
+        if (entity == null) {
+            return Collections.emptyList();
+        }
         return entity.stream().map(this::toResponse).toList();
     }
 
@@ -74,8 +74,4 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
         return repo.save(telefone);
     }
 
-    public List<PreferenciaViagem> findByUsuarioId(Long id) {
-
-        return  repo.findByUsuarioId(id);
-    }
 }

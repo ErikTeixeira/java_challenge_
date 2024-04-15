@@ -7,6 +7,8 @@ public record AvaliacaoResponse(
 
         Long id,
         String comentario,
-        Long nota
+        Long nota,
+
+        EstabelecimentoResponse estabelecimento
 ) {
 }
