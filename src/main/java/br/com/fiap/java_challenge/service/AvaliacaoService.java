@@ -9,14 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest, AvaliacaoResponse, AbstractRequest> {
 
     @Autowired
-    AvaliacaoRepository repo;
+    private AvaliacaoRepository repo;
+
+    @Autowired
+    private EstabelecimentoService estabelecimentoService;
 
     @Override
     public Avaliacao toEntity(AvaliacaoRequest avaliacaoRequest) {
@@ -28,14 +31,23 @@ public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest,
 
     @Override
     public AvaliacaoResponse toResponse(Avaliacao avaliacao) {
-        return new AvaliacaoResponse(avaliacao.getId(), avaliacao.getComentario(), avaliacao.getNota());
+
+        var estabelecimento = estabelecimentoService.toResponse(avaliacao.getEstabelecimento());
+
+        return AvaliacaoResponse.builder()
+                .estabelecimento(estabelecimento)
+                .id(avaliacao.getId())
+                .comentario(avaliacao.getComentario())
+                .nota(avaliacao.getNota())
+                .build();
     }
 
     @Override
-    public Collection<AvaliacaoResponse> toResponse(Collection<Avaliacao> entities) {
-        return entities.stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+    public Collection<AvaliacaoResponse> toResponse(Collection<Avaliacao> entity) {
+        if (entity == null) {
+            return Collections.emptyList();
+        }
+        return entity.stream().map(this::toResponse).toList();
     }
 
     @Override
@@ -50,13 +62,15 @@ public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest,
 
     @Override
     public Avaliacao findByAbstractRequest(AbstractRequest a) {
-        if (Objects.isNull(a) || Objects.isNull(a.id())) return null;
         return repo.findById(a.id()).orElse(null);
     }
 
     @Override
-    public Avaliacao save(Avaliacao avaliacao)
-    {
+    public Avaliacao save(Avaliacao avaliacao) {
         return repo.save(avaliacao);
+    }
+
+    public List<Avaliacao> findByEstabelecimentoId(Long id) {
+        return repo.findByEstabelecimentoId(id);
     }
 }

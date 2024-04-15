@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/itinerario")
@@ -22,9 +23,11 @@ public class ItinerarioResource {
     ItinerarioService service;
 
     @GetMapping
-    public List<ItinerarioResponse> findAll(@PathVariable Long id ) {
-        Itinerario itinerario = service.findById(id);
-        return Collections.singletonList(service.toResponse(itinerario));
+    public List<ItinerarioResponse> findAll() {
+        List<Itinerario> itinerarios = (List<Itinerario>) service.findAll();
+        return itinerarios.stream()
+                .map(service::toResponse)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(value = "/{id}")

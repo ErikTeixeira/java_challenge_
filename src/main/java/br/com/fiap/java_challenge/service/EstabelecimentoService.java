@@ -9,27 +9,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 @Service
 public class EstabelecimentoService implements ServiceDTO<Estabelecimento, EstabelecimentoRequest, EstabelecimentoResponse, AbstractRequest> {
 
-    @Autowired
-    AvaliacaoService avaliacaoService;
 
     @Autowired
     private EstabelecimentoRepository repo;
 
     @Override
     public EstabelecimentoResponse toResponse(Estabelecimento e) {
+        if (e == null) {
+            return null;
+        }
+
         return new EstabelecimentoResponse(
                 e.getId(),
                 e.getNome(),
                 e.getCep(),
-                e.getTipo_estabelecimento(),
-                avaliacaoService.toResponse(e.getAvaliacao())
+                e.getTipo_estabelecimento()
         );
     }
+
+
 
     @Override
     public Estabelecimento toEntity(EstabelecimentoRequest estabelecimentoRequest) {
@@ -42,10 +46,14 @@ public class EstabelecimentoService implements ServiceDTO<Estabelecimento, Estab
 
     @Override
     public Collection<EstabelecimentoResponse> toResponse(Collection<Estabelecimento> entity) {
+        if (entity == null) {
+            return Collections.emptyList();
+        }
         return entity.stream()
                 .map(this::toResponse)
                 .toList();
     }
+
 
     @Override
     public Collection<Estabelecimento> findAll() {

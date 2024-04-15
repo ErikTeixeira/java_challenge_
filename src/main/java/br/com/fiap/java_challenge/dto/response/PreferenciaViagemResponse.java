@@ -10,7 +10,6 @@ public record PreferenciaViagemResponse(
         String restricoes_alimentares,
         String tipo_transporte,
         String tipo_hospedagem,
-        String viaja_sozinho,
-        UsuarioResponse usuario
+        String viaja_sozinho
 ) {
 }
