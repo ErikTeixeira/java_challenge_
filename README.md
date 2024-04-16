@@ -25,6 +25,7 @@ MOBILE APP DEVELOPMENT  - O grupo inteiro ajudou
 ![diagramaJava.png](documentacao/diagramaJava.png)
 
 ## Link do vídeo
+- https://youtu.be/0c4opnXL8fU
 
 ##  Listagem de todos os endpoints 
 ![endpoints.png](documentacao/endpoints.png)
