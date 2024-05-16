@@ -6,15 +6,26 @@
 
 
 ## Integrantes
- . Allesson Augusto - rm99533 </br>
- . Cauã Mongs - rm552178 </br>
- . Erik Teixeira - rm551377 </br>
- . Guilherme Naoki - rm551456 </br>
- . Leonardo Gonçalves - rm98912 </br>
+ . Allesson Augusto - rm99533  -  COMPLIANCE & QUALITY ASSURANCE </br>
+ . Cauã Mongs - rm552178 - ADVANCED BUSINESS DEVELOPMENT WITH .NET
+ </br>
+ . Erik Teixeira - rm551377  -  DISRUPTIVE ARCHITECTURES: IOT, IOB &
+GENERATIVE IA </br>
+ . Guilherme Naoki - rm551456  -  MASTERING RELATIONAL AND NON-RELATIONAL DATABASE </br>
+ . Leonardo Gonçalves - rm98912  -  DEVOPS TOOLS E CLOUD COMPUTING
+ </br>
 
+JAVA ADVANCED  - O grupo inteiro ajudou </br>
+MOBILE APP DEVELOPMENT  - O grupo inteiro ajudou
 
 ## Como rodar o projeto
-
+![rodarProjeto.png](documentacao/rodarProjeto.png)
 
 ## Diagrama
 ![diagramaJava.png](documentacao/diagramaJava.png)
+
+## Link do vídeo
+- https://youtu.be/0c4opnXL8fU
+
+##  Listagem de todos os endpoints 
+![endpoints.png](documentacao/endpoints.png)
