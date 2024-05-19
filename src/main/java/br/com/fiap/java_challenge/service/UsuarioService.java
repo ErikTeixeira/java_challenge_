@@ -1,6 +1,8 @@
 package br.com.fiap.java_challenge.service;
 
+
 import br.com.fiap.java_challenge.dto.request.UsuarioRequest;
+import br.com.fiap.java_challenge.dto.response.EstabelecimentoResponse;
 import br.com.fiap.java_challenge.dto.response.UsuarioResponse;
 import br.com.fiap.java_challenge.entity.Usuario;
 import br.com.fiap.java_challenge.repository.UsuarioRepository;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -45,8 +48,8 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
     @Override
     public Usuario toEntity(UsuarioRequest dto) {
 
-        var pessoa = pessoaService.findById(dto.pessoa().id());
-        var preferenciaViagem = preferenciaViagemService.findById(dto.preferenciaViagem().id);
+        var pessoa = pessoaService.toEntity(dto.pessoa());
+        var preferenciaViagem = preferenciaViagemService.toEntity(dto.preferenciaViagem());
 
         return Usuario.builder()
                 .username(dto.username())
@@ -62,7 +65,7 @@ public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, Usuar
         var pessoa = pessoaService.toResponse(e.getPessoa());
         var preferenciaViagem = preferenciaViagemService.toResponse(e.getPreferenciaViagem());
 
-        Collection<UsuarioResponse> estabelecimentos = null;
+        List<EstabelecimentoResponse> estabelecimentos = null;
 
         if (Objects.nonNull(e.getEstabelecimentos()) && !e.getEstabelecimentos().isEmpty())
             estabelecimentos = e.getEstabelecimentos().stream().map(estabelecimentoService::toResponse).toList();

@@ -1,6 +1,6 @@
 package br.com.fiap.java_challenge.dto.request;
 
-import jakarta.validation.Valid;
+
 import jakarta.validation.constraints.NotNull;
 
 public record PreferenciaViagemRequest(

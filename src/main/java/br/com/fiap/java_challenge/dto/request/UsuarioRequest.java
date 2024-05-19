@@ -22,10 +22,6 @@ public record UsuarioRequest(
         PessoaRequest pessoa,
 
         @Valid
-        @NotNull(message = "É necessário informar os dados do estabelecimnto")
-        AbstractRequest estabelecimentos,
-
-        @Valid
         @NotNull(message = "É necessário informar as preferencias de viagem")
         PreferenciaViagemRequest preferenciaViagem
 
