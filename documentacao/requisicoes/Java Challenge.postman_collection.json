@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "92be6e4a-9b8d-4bc3-9480-a869a24c3c75",
+		"_postman_id": "f8e6b0f7-7627-4eff-acd4-808ae410406a",
 		"name": "Java Challenge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30957512"
@@ -13,10 +13,15 @@
 					"name": "Criar Usuário",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"bruninhosudre@gmail.com\",\n    \"password\": \"#Abc123*\",\n    \"pessoa\": {\n        \"nome\": \"Bruno Sudré\",\n        \"sobrenome\": \"Nascimento\",\n        \"dataNascimento\": \"2000-05-15\",\n        \"email\": \"bruninhosudre@gmail.com\"\n    },\n    \"preferenciaViagem\": {\n        \"tipo_culinaria\": \"Brasileira\",\n        \"restricoes_alimentares\": \"Nenhuma\",\n        \"tipo_transporte\": \"Avião\",\n        \"tipo_hospedagem\": \"Hotel\",\n        \"viaja_sozinho\": \"Sim\"\n    }\n}",
+							"raw": "{\n    \"username\": \"bruninhosudre@gmail.com\",\n    \"password\": \"#Abc123*1\",\n    \"pessoa\": {\n        \"nome\": \"Bruno Sudré\",\n        \"sobrenome\": \"Nascimento\",\n        \"dataNascimento\": \"2000-05-15\",\n        \"email\": \"bruninhosudre@gmail.com\"\n    },\n    \"preferenciaViagem\": {\n        \"tipo_culinaria\": \"Brasileira\",\n        \"restricoes_alimentares\": \"Nenhuma\",\n        \"tipo_transporte\": \"Avião\",\n        \"tipo_hospedagem\": \"Hotel\",\n        \"viaja_sozinho\": \"Sim\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -83,7 +88,12 @@
 					"name": "Adicionar Estabelecimento ao Usuário",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"nome\": \"Restaurante Sabor da Cidade\",\n    \"cep\": \"01001-001\",\n    \"tipo\": \"RESTAURANTE\"\n}",
@@ -131,91 +141,21 @@
 			]
 		},
 		{
-			"name": "Estabelecimento",
-			"item": [
-				{
-					"name": "Criar Estabelecimento",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Museu de Arte Moderna\",\n    \"cep\": \"01310-200\",\n    \"tipo\": \"MUSEU\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost/estabelecimentos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"estabelecimentos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Estabelecimentos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost/estabelecimentos?nome=Museu",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"estabelecimentos"
-							],
-							"query": [
-								{
-									"key": "nome",
-									"value": "Museu"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Estabelecimento por ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost/estabelecimentos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"path": [
-								"estabelecimentos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Avaliação",
 			"item": [
 				{
 					"name": "Criar Avaliação",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comentario\": \"Um lugar incrível para visitar! Recomendo muito.\",\n    \"nota\": 5,\n    \"dataAvaliacao\": \"2023-08-20\",\n    \"estabelecimento\": {\n        \"id\": 1\n    }\n}",
+							"raw": "{\n    \"comentario\": \"Um lugar incrível para visitar! Recomendo muito.\",\n    \"nota\": 5,\n    \"dataAvaliacao\": \"2023-08-20\",\n    \"estabelecimento\": {\n        \"id\": 1 \n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -287,7 +227,12 @@
 					"name": "Criar Endereço",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"cep\": \"01414-000\",\n    \"numero\": \"123\",\n    \"complemento\": \"Apto 45\",\n    \"usuario\": {\n        \"id\": 1\n    }\n}",
@@ -362,7 +307,12 @@
 					"name": "Criar Itinerário",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"descricao\": \"Visita ao Museu de Arte Moderna de SP, incluindo tour guiado e almoço no restaurante do museu.\",\n    \"usuario\": {\n        \"id\": 1\n    }\n}",

@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,25 +26,23 @@ public class AvaliacaoResource implements ResourceDTO<Avaliacao, AvaliacaoReques
     @Autowired
     private AvaliacaoService avaliacaoService;
 
-
     @GetMapping
     public ResponseEntity<List<AvaliacaoResponse>> findAll(
             @RequestParam(name="comentario", required = false) String comentario,
             @RequestParam(name="nota", required = false) Long nota,
-            @RequestParam(name="Data avaliacao", required = false) LocalDate dataAvaliacao,
+            @RequestParam(name="dataAvaliacao", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataAvaliacao,
 
-            @RequestParam(name="ID estabelecimento", required = false) Long idEstab,
-            @RequestParam(name="Nome estabelecimento", required = false) String nomeEstab,
-            @RequestParam(name="Cep estabelecimento", required = false) String cepEstab,
-
-            @RequestParam(name="Tipo estabelecimento", required = false) String tipoEstab
+            @RequestParam(name="estabelecimento.id", required = false) Long idEstab,
+            @RequestParam(name="estabelecimento.nome", required = false) String nomeEstab,
+            @RequestParam(name="estabelecimento.cep", required = false) String cepEstab,
+            @RequestParam(name="estabelecimento.tipo", required = false) TipoEstabelecimento tipoEstab
     ) {
 
         Estabelecimento estabelecimento = Estabelecimento.builder()
                 .id(idEstab)
                 .nome(nomeEstab)
                 .cep(cepEstab)
-                .tipo(TipoEstabelecimento.valueOf(tipoEstab))
+                .tipo(tipoEstab)
                 .build();
 
         Avaliacao avaliacao = Avaliacao.builder()
