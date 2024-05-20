@@ -5,16 +5,6 @@
 **TechPeach** é uma plataforma inovadora que utiliza inteligência artificial e análise de dados para criar itinerários de viagem personalizados adaptados às preferências individuais dos usuários. Nossa missão é proporcionar uma experiência de viagem mais gratificante e autêntica, conectando viajantes a destinos e atividades que realmente os inspirem.
 
 ## Integrantes
-<<<<<<< HEAD
- . Allesson Augusto - rm99533  -  COMPLIANCE & QUALITY ASSURANCE </br>
- . Cauã Mongs - rm552178 - ADVANCED BUSINESS DEVELOPMENT WITH .NET
- </br>
- . Erik Teixeira - rm551377  -  DISRUPTIVE ARCHITECTURES: IOT, IOB &
-GENERATIVE IA </br>
- . Guilherme Naoki - rm551456  -  MASTERING RELATIONAL AND NON-RELATIONAL DATABASE </br>
- . Leonardo Gonçalves - rm98912  -  DEVOPS TOOLS E CLOUD COMPUTING
- </br>
-=======
 
 * **Allesson Augusto (RM99533):** Compliance & Quality Assurance
 * **Cauã Mongs (RM552178):** Advanced Business Development with .NET
@@ -24,24 +14,8 @@ GENERATIVE IA </br>
 
 **Contribuições em Equipe:**
 * Mobile App Development: Todo o grupo colaborou.
->>>>>>> rm551377
 
-JAVA ADVANCED  - O grupo inteiro ajudou </br>
-MOBILE APP DEVELOPMENT  - O grupo inteiro ajudou
 
-<<<<<<< HEAD
-## Como rodar o projeto
-![rodarProjeto.png](documentacao/rodarProjeto.png)
-
-## Diagrama
-![diagramaJava.png](documentacao/diagramaJava.png)
-
-## Link do vídeo
-- https://youtu.be/0c4opnXL8fU
-
-##  Listagem de todos os endpoints 
-![endpoints.png](documentacao/endpoints.png)
-=======
 ## Rodando a Aplicação
 
 **Pré-requisitos:**
@@ -151,4 +125,3 @@ Viajantes e turistas que buscam uma experiência de viagem personalizada e memor
 
 
 Com o TechPeach, os viajantes podem descobrir e reservar atividades personalizadas, tornando suas viagens mais memoráveis e autênticas!
->>>>>>> rm551377
