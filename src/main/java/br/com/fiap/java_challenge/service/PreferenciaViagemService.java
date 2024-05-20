@@ -1,60 +1,25 @@
 package br.com.fiap.java_challenge.service;
 
-import br.com.fiap.java_challenge.dto.request.AbstractRequest;
 import br.com.fiap.java_challenge.dto.request.PreferenciaViagemRequest;
 import br.com.fiap.java_challenge.dto.response.PreferenciaViagemResponse;
 import br.com.fiap.java_challenge.entity.PreferenciaViagem;
 import br.com.fiap.java_challenge.repository.PreferenciaViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @Service
-public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, PreferenciaViagemRequest, PreferenciaViagemResponse, AbstractRequest> {
+public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, PreferenciaViagemRequest, PreferenciaViagemResponse> {
 
     @Autowired
     private PreferenciaViagemRepository repo;
 
-    @Override
-    public PreferenciaViagemResponse toResponse(PreferenciaViagem preferenciaViagem) {
-        if (preferenciaViagem == null) {
-            return null;
-        }
-
-        return PreferenciaViagemResponse.builder()
-                .id(preferenciaViagem.getId())
-                .tipo_culinaria(preferenciaViagem.getTipo_culinaria())
-                .restricoes_alimentares(preferenciaViagem.getRestricoes_alimentares())
-                .tipo_transporte(preferenciaViagem.getTipo_transporte())
-                .tipo_hospedagem(preferenciaViagem.getTipo_hospedagem())
-                .viaja_sozinho(preferenciaViagem.getViaja_sozinho())
-                .build();
-    }
 
     @Override
-    public PreferenciaViagem toEntity(PreferenciaViagemRequest preferenciaViagemRequest) {
-        return PreferenciaViagem.builder()
-                .tipo_culinaria(preferenciaViagemRequest.tipo_culinaria())
-                .restricoes_alimentares(preferenciaViagemRequest.restricoes_alimentares())
-                .tipo_transporte(preferenciaViagemRequest.tipo_transporte())
-                .tipo_hospedagem(preferenciaViagemRequest.tipo_hospedagem())
-                .viaja_sozinho(preferenciaViagemRequest.viaja_sozinho())
-                .build();
-    }
-
-    @Override
-    public Collection<PreferenciaViagemResponse> toResponse(Collection<PreferenciaViagem> entity) {
-        if (entity == null) {
-            return Collections.emptyList();
-        }
-        return entity.stream().map(this::toResponse).toList();
-    }
-
-    @Override
-    public Collection<PreferenciaViagem> findAll() {
-        return repo.findAll();
+    public Collection<PreferenciaViagem> findAll(Example<PreferenciaViagem> example) {
+        return repo.findAll(example);
     }
 
     @Override
@@ -63,15 +28,32 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
     }
 
     @Override
-    public PreferenciaViagem findByAbstractRequest(AbstractRequest a) {
-
-        return repo.findById(a.id()).orElse(null);
+    public PreferenciaViagem save(PreferenciaViagem e) {
+        return repo.save(e);
     }
 
     @Override
-    public PreferenciaViagem save(PreferenciaViagem telefone) {
+    public PreferenciaViagem toEntity(PreferenciaViagemRequest dto) {
 
-        return repo.save(telefone);
+        return PreferenciaViagem.builder()
+                .tipo_culinaria(dto.tipo_culinaria())
+                .restricoes_alimentares(dto.restricoes_alimentares())
+                .tipo_transporte(dto.tipo_transporte())
+                .tipo_hospedagem(dto.tipo_hospedagem())
+                .viaja_sozinho(dto.viaja_sozinho())
+                .build();
     }
 
+    @Override
+    public PreferenciaViagemResponse toResponse(PreferenciaViagem e) {
+
+        return PreferenciaViagemResponse.builder()
+                .id(e.getId())
+                .tipo_culinaria(e.getTipo_culinaria())
+                .restricoes_alimentares(e.getRestricoes_alimentares())
+                .tipo_transporte(e.getTipo_transporte())
+                .tipo_hospedagem(e.getTipo_hospedagem())
+                .viaja_sozinho(e.getViaja_sozinho())
+                .build();
+    }
 }

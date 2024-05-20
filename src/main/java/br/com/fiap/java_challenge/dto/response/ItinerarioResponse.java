@@ -9,7 +9,8 @@ public record ItinerarioResponse(
 
         Long id,
         String descricao,
-        Collection<UsuarioResponse> usuario
+
+        UsuarioResponse usuario
 
 ) {
 }

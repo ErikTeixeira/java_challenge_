@@ -1,19 +1,18 @@
 package br.com.fiap.java_challenge.service;
 
-import br.com.fiap.java_challenge.dto.request.AbstractRequest;
 import br.com.fiap.java_challenge.dto.request.AvaliacaoRequest;
 import br.com.fiap.java_challenge.dto.response.AvaliacaoResponse;
 import br.com.fiap.java_challenge.entity.Avaliacao;
 import br.com.fiap.java_challenge.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Service
-public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest, AvaliacaoResponse, AbstractRequest> {
+public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest, AvaliacaoResponse> {
 
     @Autowired
     private AvaliacaoRepository repo;
@@ -21,38 +20,10 @@ public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest,
     @Autowired
     private EstabelecimentoService estabelecimentoService;
 
-    @Override
-    public Avaliacao toEntity(AvaliacaoRequest avaliacaoRequest) {
-        return Avaliacao.builder()
-                .comentario(avaliacaoRequest.comentario())
-                .nota(avaliacaoRequest.nota())
-                .build();
-    }
 
     @Override
-    public AvaliacaoResponse toResponse(Avaliacao avaliacao) {
-
-        var estabelecimento = estabelecimentoService.toResponse(avaliacao.getEstabelecimento());
-
-        return AvaliacaoResponse.builder()
-                .estabelecimento(estabelecimento)
-                .id(avaliacao.getId())
-                .comentario(avaliacao.getComentario())
-                .nota(avaliacao.getNota())
-                .build();
-    }
-
-    @Override
-    public Collection<AvaliacaoResponse> toResponse(Collection<Avaliacao> entity) {
-        if (entity == null) {
-            return Collections.emptyList();
-        }
-        return entity.stream().map(this::toResponse).toList();
-    }
-
-    @Override
-    public Collection<Avaliacao> findAll() {
-        return repo.findAll();
+    public Collection<Avaliacao> findAll(Example<Avaliacao> example) {
+        return repo.findAll(example);
     }
 
     @Override
@@ -61,16 +32,34 @@ public class AvaliacaoService implements ServiceDTO<Avaliacao, AvaliacaoRequest,
     }
 
     @Override
-    public Avaliacao findByAbstractRequest(AbstractRequest a) {
-        return repo.findById(a.id()).orElse(null);
+    public Avaliacao save(Avaliacao e) {
+        return repo.save(e);
     }
 
     @Override
-    public Avaliacao save(Avaliacao avaliacao) {
-        return repo.save(avaliacao);
+    public Avaliacao toEntity(AvaliacaoRequest dto) {
+
+        var estabelecimento = estabelecimentoService.findById(dto.estabelecimento().id());
+
+        return Avaliacao.builder()
+                .comentario(dto.comentario())
+                .nota(dto.nota())
+                .dataAvaliacao(dto.dataAvaliacao())
+                .estabelecimento(estabelecimento)
+                .build();
     }
 
-    public List<Avaliacao> findByEstabelecimentoId(Long id) {
-        return repo.findByEstabelecimentoId(id);
+    @Override
+    public AvaliacaoResponse toResponse(Avaliacao e) {
+
+        var estabelecimento = estabelecimentoService.toResponse(e.getEstabelecimento());
+
+        return AvaliacaoResponse.builder()
+                .id(e.getId())
+                .comentario(e.getComentario())
+                .nota(e.getNota())
+                .dataAvaliacao(e.getDataAvaliacao())
+                .estabelecimento(estabelecimento)
+                .build();
     }
 }

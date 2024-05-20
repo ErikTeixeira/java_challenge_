@@ -22,13 +22,15 @@ public class Estabelecimento {
     @Column(name = "ID_ESTABELECIMENTO")
     private Long id;
 
-    @Column(name = "NM_ESTABELECIMENTO")
+    @Column(name = "NM_ESTABELECIMENTO", nullable = false)
     private String nome;
 
-    @Column(name = "CEP_ESTABELECIMENTO")
+    @Column(name = "CEP_ESTABELECIMENTO", nullable = false)
     private String cep;
 
-    private String tipo_estabelecimento;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TP_ESTABELECIMENTO", nullable = false)
+    private TipoEstabelecimento tipo;
 
 
 }

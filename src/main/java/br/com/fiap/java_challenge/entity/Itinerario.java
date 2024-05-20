@@ -6,10 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,29 +25,14 @@ public class Itinerario {
     private String descricao;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(
-            name = "TB_USUARIO_ITINERARIO",
-            joinColumns = {
-                    @JoinColumn(
-                            name = "ITINERARIO",
-                            referencedColumnName = "ID_ITINERARIO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_ITINERARIO_USUARIO"
-                            )
-                    )
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(
-                            name = "USUARIO",
-                            referencedColumnName = "ID_USUARIO",
-                            foreignKey = @ForeignKey(
-                                    name = "FK_USUARIO_ITINERARIO"
-                            )
-                    )
-            }
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(
+            name = "USUARIO_ID",
+            referencedColumnName = "ID_USUARIO",
+            foreignKey = @ForeignKey(
+                    name = "FK_ITINERARIO_USUARIO"
+            )
     )
-    private Set<Usuario> usuarios = new LinkedHashSet<>();
-
+    private Usuario usuario;
 
 }

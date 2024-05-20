@@ -1,10 +1,12 @@
 package br.com.fiap.java_challenge.dto.request;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public record AbstractRequest(
 
-        @NotNull(message = "O id deve ser informado")
+        @Positive(message = "O Id deve ser um número positivo")
+        @NotNull(message = "O id é obrigatório")
         Long id
 
 ) {

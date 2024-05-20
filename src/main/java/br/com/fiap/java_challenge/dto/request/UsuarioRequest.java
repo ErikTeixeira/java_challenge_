@@ -1,23 +1,29 @@
 package br.com.fiap.java_challenge.dto.request;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record UsuarioRequest(
 
-        @NotNull(message = "O nome do usuário não pode ser nulo")
-        String nome,
 
-        @NotNull(message = "O email do usuário não pode ser nulo")
-        @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "O email do técnico deve ter um formato válido")
-        String email,
+        @Email(message = "Username deve ser um email válido")
+        @NotNull(message = "Username não pode ser nulo")
+        String username,
 
-        @NotNull(message = "A idade do usuário não pode ser nula")
-        Long idade,
+        @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,16}$",
+                message = "A senha deve conter entre 8 e 16 caracteres, incluindo pelo menos uma letra minúscula, uma letra maiúscula, um número e um caractere especial ($*&@#)")
+        @NotNull(message = "O password não pode ser null")
+        String password,
 
-        @NotNull(message = "O gênero do usuário não pode ser nulo")
-        String genero
+        @Valid
+        @NotNull(message = "É necessário informar os dados da pessoa")
+        PessoaRequest pessoa,
 
+        @Valid
+        @NotNull(message = "É necessário informar as preferencias de viagem")
+        PreferenciaViagemRequest preferenciaViagem
 
 ) {
 }

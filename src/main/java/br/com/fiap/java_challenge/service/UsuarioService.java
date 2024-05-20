@@ -1,88 +1,82 @@
 package br.com.fiap.java_challenge.service;
 
-import br.com.fiap.java_challenge.dto.request.AbstractRequest;
+
 import br.com.fiap.java_challenge.dto.request.UsuarioRequest;
+import br.com.fiap.java_challenge.dto.response.EstabelecimentoResponse;
 import br.com.fiap.java_challenge.dto.response.UsuarioResponse;
 import br.com.fiap.java_challenge.entity.Usuario;
 import br.com.fiap.java_challenge.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 @Service
-public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, UsuarioResponse, AbstractRequest> {
+public class UsuarioService implements ServiceDTO<Usuario, UsuarioRequest, UsuarioResponse> {
 
     @Autowired
-    private PreferenciaViagemService preferenciaViagemService;
+    private UsuarioRepository repo;
+
+    @Autowired
+    private PessoaService pessoaService;
 
     @Autowired
     private EstabelecimentoService estabelecimentoService;
 
     @Autowired
-    private UsuarioRepository repo;
+    private PreferenciaViagemService preferenciaViagemService;
 
 
     @Override
-    public UsuarioResponse toResponse(Usuario u) {
-
-        var estabelecimento = estabelecimentoService.toResponse(u.getEstabelecimentos());
-        var prefereciaViagem = preferenciaViagemService.toResponse(u.getPreferenciaViagem());
-
-        return UsuarioResponse.builder()
-                .estabelecimento(estabelecimento)
-                .preferenciaViagem(prefereciaViagem)
-                .nome(u.getNome())
-                .email(u.getEmail())
-                .idade(u.getIdade())
-                .genero(u.getGenero())
-                .build();
-    }
-
-    @Override
-    public Usuario toEntity(UsuarioRequest usuarioRequest) {
-        return Usuario.builder()
-                .nome(usuarioRequest.nome())
-                .email(usuarioRequest.email())
-                .idade(Math.toIntExact(usuarioRequest.idade()))
-                .genero(usuarioRequest.genero())
-                .build();
-    }
-
-    @Override
-    public Collection<UsuarioResponse> toResponse(Collection<Usuario> entity) {
-        if (entity == null) {
-            return Collections.emptyList();
-        }
-        return entity.stream().map(this::toResponse).toList();
-    }
-
-    @Override
-    public Collection<Usuario> findAll() {
-
-        return repo.findAll();
+    public Collection<Usuario> findAll(Example<Usuario> example) {
+        return repo.findAll(example);
     }
 
     @Override
     public Usuario findById(Long id) {
-
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public Usuario findByAbstractRequest(AbstractRequest a) {
-        if (Objects.isNull(a)) return null;
-        return repo.findById(a.id()).orElse(null);
+    public Usuario save(Usuario e) {
+        return repo.save(e);
     }
 
     @Override
-    public Usuario save(Usuario usuario)
-    {
-        return repo.save(usuario);
+    public Usuario toEntity(UsuarioRequest dto) {
+
+        var pessoa = pessoaService.toEntity(dto.pessoa());
+        var preferenciaViagem = preferenciaViagemService.toEntity(dto.preferenciaViagem());
+
+        return Usuario.builder()
+                .username(dto.username())
+                .password(dto.password())
+                .pessoa(pessoa)
+                .preferenciaViagem(preferenciaViagem)
+                .build();
     }
 
+    @Override
+    public UsuarioResponse toResponse(Usuario e) {
 
+        var pessoa = pessoaService.toResponse(e.getPessoa());
+        var preferenciaViagem = preferenciaViagemService.toResponse(e.getPreferenciaViagem());
+
+        List<EstabelecimentoResponse> estabelecimentos = null;
+
+        if (Objects.nonNull(e.getEstabelecimentos()) && !e.getEstabelecimentos().isEmpty())
+            estabelecimentos = e.getEstabelecimentos().stream().map(estabelecimentoService::toResponse).toList();
+
+        return UsuarioResponse.builder()
+                .id(e.getId())
+                .username(e.getUsername())
+                .password(e.getPassword())
+                .pessoa(pessoa)
+                .estabelecimento(estabelecimentos)
+                .preferenciaViagem(preferenciaViagem)
+                .build();
+    }
 }

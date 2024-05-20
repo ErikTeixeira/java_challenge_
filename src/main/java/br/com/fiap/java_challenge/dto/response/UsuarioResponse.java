@@ -7,10 +7,9 @@ import java.util.Collection;
 @Builder
 public record UsuarioResponse(
         Long id,
-        String nome,
-        String email,
-        Integer idade,
-        String genero,
+        String username,
+        String password,
+        PessoaResponse pessoa,
 
         Collection<EstabelecimentoResponse> estabelecimento,
 

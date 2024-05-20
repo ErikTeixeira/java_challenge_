@@ -16,7 +16,17 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "TB_USUARIO")
+@Table(name = "TB_USUARIO",
+        uniqueConstraints = {
+
+                @UniqueConstraint(
+                        name = "UK_USERNAME_USUARIO", columnNames = {"USERNAME"}
+                ),
+                @UniqueConstraint(
+                        name = "UK_PESSOA_USUARIO", columnNames = "PESSOA"
+                )
+        }
+)
 public class Usuario {
 
     @Id
@@ -25,14 +35,22 @@ public class Usuario {
     @Column(name = "ID_USUARIO")
     private Long id;
 
-    @Column(name = "NM_USUARIO")
-    private String nome;
+    @Column(name = "USERNAME", nullable = false)
+    private String username;
 
-    private String email;
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
 
-    private Integer idade;
 
-    private String genero;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(
+            name = "PESSOA",
+            referencedColumnName = "ID_PESSOA",
+            foreignKey = @ForeignKey(
+                    name = "FK_USUARIO_PESSOA"
+            )
+    )
+    private Pessoa pessoa;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})

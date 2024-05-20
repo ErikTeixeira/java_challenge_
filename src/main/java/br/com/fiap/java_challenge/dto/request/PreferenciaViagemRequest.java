@@ -1,5 +1,6 @@
 package br.com.fiap.java_challenge.dto.request;
 
+
 import jakarta.validation.constraints.NotNull;
 
 public record PreferenciaViagemRequest(
@@ -17,10 +18,8 @@ public record PreferenciaViagemRequest(
         String tipo_hospedagem,
 
         @NotNull(message = "É obrigatório este campo se o usuário irá viajar sozinho ou não")
-        String viaja_sozinho,
+        String viaja_sozinho
 
-        @NotNull(message = "A preferência de viagem precisa da informação do usuário")
-        AbstractRequest usuario
 
 ) {
 }
