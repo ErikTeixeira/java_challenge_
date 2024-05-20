@@ -35,7 +35,7 @@ public class Pessoa {
     @Column(name = "DT_NASCIMENTO", nullable = false)
     private LocalDate dataNascimento;
 
-    @Column(nullable = false)
+    @Column(name = "EMAIL_PESSOA", nullable = false)
     private String email;
 
 }

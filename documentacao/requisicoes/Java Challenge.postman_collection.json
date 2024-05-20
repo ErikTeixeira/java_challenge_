@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "92be6e4a-9b8d-4bc3-9480-a869a24c3c75",
+		"name": "Java Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30957512"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Criar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"bruninhosudre@gmail.com\",\n    \"password\": \"#Abc123*\",\n    \"pessoa\": {\n        \"nome\": \"Bruno Sudré\",\n        \"sobrenome\": \"Nascimento\",\n        \"dataNascimento\": \"2000-05-15\",\n        \"email\": \"bruninhosudre@gmail.com\"\n    },\n    \"preferenciaViagem\": {\n        \"tipo_culinaria\": \"Brasileira\",\n        \"restricoes_alimentares\": \"Nenhuma\",\n        \"tipo_transporte\": \"Avião\",\n        \"tipo_hospedagem\": \"Hotel\",\n        \"viaja_sozinho\": \"Sim\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/usuarios?username=bruninhosudre@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "bruninhosudre@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Estabelecimento ao Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Restaurante Sabor da Cidade\",\n    \"cep\": \"01001-001\",\n    \"tipo\": \"RESTAURANTE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/usuarios/1/estabelecimentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuarios",
+								"1",
+								"estabelecimentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estabelecimentos do Usuário",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/usuarios/1/estabelecimentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"usuarios",
+								"1",
+								"estabelecimentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estabelecimento",
+			"item": [
+				{
+					"name": "Criar Estabelecimento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Museu de Arte Moderna\",\n    \"cep\": \"01310-200\",\n    \"tipo\": \"MUSEU\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/estabelecimentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estabelecimentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/estabelecimentos?nome=Museu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimentos"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Museu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estabelecimento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/estabelecimentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"estabelecimentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Avaliação",
+			"item": [
+				{
+					"name": "Criar Avaliação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comentario\": \"Um lugar incrível para visitar! Recomendo muito.\",\n    \"nota\": 5,\n    \"dataAvaliacao\": \"2023-08-20\",\n    \"estabelecimento\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/avaliacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"avaliacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Avaliações",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/avaliacao?nota=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"avaliacao"
+							],
+							"query": [
+								{
+									"key": "nota",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Avaliação por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/avaliacao/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"avaliacao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Endereço",
+			"item": [
+				{
+					"name": "Criar Endereço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cep\": \"01414-000\",\n    \"numero\": \"123\",\n    \"complemento\": \"Apto 45\",\n    \"usuario\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/endereco",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Endereços",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/endereco?cep=01414-000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"endereco"
+							],
+							"query": [
+								{
+									"key": "cep",
+									"value": "01414-000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Endereço por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/endereco/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Itinerário",
+			"item": [
+				{
+					"name": "Criar Itinerário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Visita ao Museu de Arte Moderna de SP, incluindo tour guiado e almoço no restaurante do museu.\",\n    \"usuario\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/itinerario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Itinerários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/itinerario?descricao=Visita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario"
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "Visita"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Itinerário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/itinerario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"itinerario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
