@@ -125,3 +125,40 @@ Viajantes e turistas que buscam uma experiência de viagem personalizada e memor
 
 
 Com o TechPeach, os viajantes podem descobrir e reservar atividades personalizadas, tornando suas viagens mais memoráveis e autênticas!
+
+---
+---
+
+# Comparação entre as Sprints 1 e 2 do Projeto TechPeach
+
+## Modelagem de Dados
+
+- **Aprimorada com a adição da entidade Pessoa.**
+- **A relação entre Usuario e Estabelecimento foi modificada para ManyToMany**, permitindo que um usuário tenha preferência por múltiplos estabelecimentos.
+- **Foi adicionada a entidade TipoEstabelecimento como um Enum**, tornando o código mais organizado e evitando erros de digitação.
+- **Restrições de unique constraints foram adicionadas às entidades Pessoa e Usuario**, garantindo a integridade dos dados.
+
+## API
+
+- **Agora permite a busca de entidades com filtros**, tornando a pesquisa mais flexível.
+- **Endpoints para adicionar estabelecimentos a um usuário foram implementados.**
+- **A API está mais RESTful**, utilizando corretamente os verbos HTTP (GET, POST, etc.) e códigos de status HTTP.
+
+## Organização do Código
+
+- **A estrutura de classes e interfaces para Service e Resource foi refinada**, tornando o código mais modular e reutilizável.
+- **Foi criada a interface ResourceDTO**, centralizando a definição dos endpoints básicos para cada recurso.
+- **Foi implementada a interface ServiceDTO**, padronizando os métodos de serviço.
+
+## Documentação
+
+- **O README.md foi expandido**, incluindo instruções detalhadas de como rodar a aplicação localmente.
+- **A seção "Documentação da API" no README.md foi atualizada**, descrevendo os endpoints disponíveis na API.
+
+## Validações
+
+- **As validações nos DTOs foram aprimoradas** com a adição de novas constraints e mensagens de erro mais informativas.
+
+## Conclusão
+
+A **Sprint 2 demonstra um avanço notável em relação à Sprint 1**. As melhorias implementadas tornam a aplicação mais robusta, escalável, segura e fácil de manter. A atenção aos detalhes na modelagem de dados, design da API, organização do código, documentação e validações demonstram um compromisso com a qualidade da aplicação.
