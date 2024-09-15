@@ -5,7 +5,6 @@ import lombok.Builder;
 
 @Builder
 public record EstabelecimentoResponse(
-
         Long id,
         String nome,
         String cep,

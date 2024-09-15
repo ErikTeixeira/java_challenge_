@@ -4,7 +4,6 @@ import lombok.Builder;
 
 @Builder
 public record PreferenciaViagemResponse(
-
         Long id,
         String tipo_culinaria,
         String restricoes_alimentares,

@@ -1,8 +1,8 @@
 package br.com.fiap.java_challenge.dto.request;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public record AvaliacaoRequest(
 
-        @NotNull(message = "O comentário não pode ser nulo")
+        @NotBlank(message = "O comentário não pode ser nulo ou em branco")
         String comentario,
 
         @Min(value = 1, message = "A nota deve ser no mínimo 1")
@@ -21,10 +21,8 @@ public record AvaliacaoRequest(
         @PastOrPresent(message = "Não aceitamos data no futuro")
         LocalDate dataAvaliacao,
 
-        @Valid
-        @NotNull(message = "É necessário informar os dados do estabelecimento")
-        AbstractRequest estabelecimento
-
+        @NotNull(message = "É necessário informar o ID do estabelecimento")
+        @Min(value = 1, message = "O ID do estabelecimento deve ser positivo") // Impede valores negativos
+        Long estabelecimentoId
 ) {
-
 }

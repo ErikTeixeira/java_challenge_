@@ -37,5 +37,4 @@ public class Pessoa {
 
     @Column(name = "EMAIL_PESSOA", nullable = false)
     private String email;
-
 }

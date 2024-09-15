@@ -12,8 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-
 @Entity
 @Table(name = "TB_AVALIACAO")
 public class Avaliacao {
@@ -31,13 +29,6 @@ public class Avaliacao {
     private LocalDate dataAvaliacao;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(
-            name = "ESTABELECIMENTO",
-            referencedColumnName = "ID_ESTABELECIMENTO",
-            foreignKey = @ForeignKey(
-                    name = "FK_AVALIACAO_ESTABELECIMENTO"
-            )
-    )
+    @JoinColumn(name = "ESTABELECIMENTO", referencedColumnName = "ID_ESTABELECIMENTO", foreignKey = @ForeignKey(name = "FK_AVALIACAO_ESTABELECIMENTO"))
     private Estabelecimento estabelecimento;
-
 }

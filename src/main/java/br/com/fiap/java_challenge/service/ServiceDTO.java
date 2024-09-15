@@ -4,16 +4,14 @@ import org.springframework.data.domain.Example;
 
 import java.util.Collection;
 
-public interface ServiceDTO <Entity, Request, Response> {
+public interface ServiceDTO<Entity, Request, Response> {
+    Collection<Entity> findAll(Example<Entity> example);
 
-    public Collection<Entity> findAll(Example<Entity> example);
+    Entity findById(Long id);
 
-    public Entity findById(Long id);
+    Entity save(Entity e);
 
-    public Entity save(Entity e);
+    Entity toEntity(Request dto);
 
-    public Entity toEntity(Request dto);
-
-    public Response toResponse(Entity e);
-
+    Response toResponse(Entity e);
 }

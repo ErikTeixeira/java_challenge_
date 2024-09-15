@@ -6,17 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-
 @Entity
 @Table(name = "TB_PREFERENCIA_VIAGEM")
 public class PreferenciaViagem {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PREFERENCIAVIAGEM")
@@ -33,6 +29,4 @@ public class PreferenciaViagem {
     private String tipo_hospedagem;
 
     private String viaja_sozinho;
-
-
 }

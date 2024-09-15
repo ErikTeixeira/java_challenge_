@@ -16,8 +16,6 @@ public class EstabelecimentoService implements ServiceDTO<Estabelecimento, Estab
     @Autowired
     private EstabelecimentoRepository repo;
 
-
-
     @Override
     public Collection<Estabelecimento> findAll(Example<Estabelecimento> example) {
         return repo.findAll(example);
@@ -35,7 +33,6 @@ public class EstabelecimentoService implements ServiceDTO<Estabelecimento, Estab
 
     @Override
     public Estabelecimento toEntity(EstabelecimentoRequest dto) {
-
         return Estabelecimento.builder()
                 .nome(dto.nome())
                 .cep(dto.cep())
@@ -45,7 +42,6 @@ public class EstabelecimentoService implements ServiceDTO<Estabelecimento, Estab
 
     @Override
     public EstabelecimentoResponse toResponse(Estabelecimento e) {
-
         return EstabelecimentoResponse.builder()
                 .id(e.getId())
                 .nome(e.getNome())

@@ -16,7 +16,6 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
     @Autowired
     private PreferenciaViagemRepository repo;
 
-
     @Override
     public Collection<PreferenciaViagem> findAll(Example<PreferenciaViagem> example) {
         return repo.findAll(example);
@@ -34,7 +33,6 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
 
     @Override
     public PreferenciaViagem toEntity(PreferenciaViagemRequest dto) {
-
         return PreferenciaViagem.builder()
                 .tipo_culinaria(dto.tipo_culinaria())
                 .restricoes_alimentares(dto.restricoes_alimentares())
@@ -46,7 +44,6 @@ public class PreferenciaViagemService implements ServiceDTO<PreferenciaViagem, P
 
     @Override
     public PreferenciaViagemResponse toResponse(PreferenciaViagem e) {
-
         return PreferenciaViagemResponse.builder()
                 .id(e.getId())
                 .tipo_culinaria(e.getTipo_culinaria())

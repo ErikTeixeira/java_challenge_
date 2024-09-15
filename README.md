@@ -2,7 +2,7 @@
 
 ![image](https://github.com/AlleSilvaa/TechPeach/assets/126684613/9783be37-be88-4a69-9629-dbc7f67624d6)
 
-**TechPeach** é uma plataforma inovadora que utiliza inteligência artificial e análise de dados para criar itinerários de viagem personalizados adaptados às preferências individuais dos usuários. Nossa missão é proporcionar uma experiência de viagem mais gratificante e autêntica, conectando viajantes a destinos e atividades que realmente os inspirem.
+**TechPeach** é uma plataforma web que permite aos usuários organizar e compartilhar seus locais favoritos em São Paulo. Com uma interface intuitiva e dinâmica, o TechPeach facilita o planejamento de viagens e a descoberta de novos pontos de interesse na cidade.
 
 ## Integrantes
 
@@ -57,11 +57,18 @@ Certifique-se de que o Maven e o Java estão corretamente instalados e configura
 
 ## Diagramas
 
-**Diagrama da Sprint 2:**
-    ![diagramaJava.png](documentacao/diagramaJava.png)
-
-**Diagrama da Sprint 1:**
-    ![diagramaJava1.png](documentacao/diagramaJava1.png)
+**Diagrama da entity da Sprint:**
+    ![entity.png](documentacao/entity.png)
+**Diagrama repository da Sprint:**
+    ![repository.png](documentacao/repository.png)
+**Diagrama request e response da Sprint:**
+    ![request-response.png](documentacao/request-response.png)
+**Diagrama service da Sprint:**
+    ![service.png](documentacao/service.png)
+**Diagrama da controller da Sprint:**
+    ![controller.png](documentacao/controller.png)
+**Diagrama da Sprint:**
+    ![diagrama6.png](documentacao/diagrama6.png)
 
 
 ## Vídeo da Proposta Tecnológica
@@ -73,34 +80,6 @@ Certifique-se de que o Maven e o Java estão corretamente instalados e configura
     * https://youtu.be/0c4opnXL8fU
 
 
-## Documentação da API (Endpoints)
-
-### Usuários
-
-- **POST /usuarios:** Criar um novo usuário.
-- **GET /usuarios:** Buscar usuários (com filtros opcionais).
-- **GET /usuarios/{id}:** Buscar usuário por ID.
-- **POST /usuarios/{id}/estabelecimentos:** Adicionar um estabelecimento a um usuário.
-- **GET /usuarios/{id}/estabelecimentos:** Listar estabelecimentos de um usuário.
-
-### Avaliações
-
-- **POST /avaliacao:** Criar uma nova avaliação.
-- **GET /avaliacao:** Buscar avaliações (com filtros opcionais).
-- **GET /avaliacao/{id}:** Buscar avaliação por ID.
-
-### Endereços
-
-- **POST /endereco:** Criar um novo endereço.
-- **GET /endereco:** Buscar endereços (com filtros opcionais).
-- **GET /endereco/{id}:** Buscar endereço por ID.
-
-### Itinerários
-
-- **POST /itinerario:** Criar um novo itinerário.
-- **GET /itinerario:** Buscar itinerários (com filtros opcionais).
-- **GET /itinerario/{id}:** Buscar itinerário por ID.
-
 
 ## Descrição do Problema e Solução
 
@@ -108,7 +87,10 @@ Certifique-se de que o Maven e o Java estão corretamente instalados e configura
 Planejar viagens pode ser um processo tedioso e desafiador, especialmente para encontrar atividades e locais que se alinhem com as preferências individuais dos viajantes.
 
 ### Solução
-TechPeach utiliza inteligência artificial e análise de dados para compreender as preferências dos usuários, gerando itinerários personalizados que atendem às suas necessidades.
+O TechPeach oferece uma plataforma online onde os usuários podem:
+- Cadastrar seus locais favoritos em São Paulo, com informações detalhadas como endereço, horário de funcionamento, fotos e avaliações.
+- Organizar os locais em listas personalizadas, facilitando o planejamento de roteiros.
+- Compartilhar as listas com amigos e familiares, permitindo a colaboração na organização da viagem.
 
 ### Público-Alvo
 Viajantes e turistas que buscam uma experiência de viagem personalizada e memorável.
@@ -119,46 +101,13 @@ Viajantes e turistas que buscam uma experiência de viagem personalizada e memor
 - **Personalização:** Cria itinerários sob medida adaptados às preferências dos usuários.
 - **Ofertas Exclusivas:** Oferece ofertas especiais em parceria com estabelecimentos locais.
 
-### Diferenciais
-- **IA Avançada:** Utiliza algoritmos de IA sofisticados para gerar recomendações precisas.
-- **Parcerias Locais:** Colabora com estabelecimentos locais para oferecer experiências autênticas e ofertas especiais.
+### Próximos Passos
+- Implementar autenticação de usuários com Spring Security.
+- Adicionar recursos de internacionalização para suportar múltiplos idiomas.
+- Integrar recursos de mensageria para comunicação assíncrona.
+- Implementar monitoramento da aplicação com Spring Boot Actuator.
+- Explorar a possibilidade de integrar recursos de IA para aprimorar as recomendações de locais (opcional).
 
 
 Com o TechPeach, os viajantes podem descobrir e reservar atividades personalizadas, tornando suas viagens mais memoráveis e autênticas!
 
----
----
-
-# Comparação entre as Sprints 1 e 2 do Projeto TechPeach
-
-## Modelagem de Dados
-
-- **Aprimorada com a adição da entidade Pessoa.**
-- **A relação entre Usuario e Estabelecimento foi modificada para ManyToMany**, permitindo que um usuário tenha preferência por múltiplos estabelecimentos.
-- **Foi adicionada a entidade TipoEstabelecimento como um Enum**, tornando o código mais organizado e evitando erros de digitação.
-- **Restrições de unique constraints foram adicionadas às entidades Pessoa e Usuario**, garantindo a integridade dos dados.
-
-## API
-
-- **Agora permite a busca de entidades com filtros**, tornando a pesquisa mais flexível.
-- **Endpoints para adicionar estabelecimentos a um usuário foram implementados.**
-- **A API está mais RESTful**, utilizando corretamente os verbos HTTP (GET, POST, etc.) e códigos de status HTTP.
-
-## Organização do Código
-
-- **A estrutura de classes e interfaces para Service e Resource foi refinada**, tornando o código mais modular e reutilizável.
-- **Foi criada a interface ResourceDTO**, centralizando a definição dos endpoints básicos para cada recurso.
-- **Foi implementada a interface ServiceDTO**, padronizando os métodos de serviço.
-
-## Documentação
-
-- **O README.md foi expandido**, incluindo instruções detalhadas de como rodar a aplicação localmente.
-- **A seção "Documentação da API" no README.md foi atualizada**, descrevendo os endpoints disponíveis na API.
-
-## Validações
-
-- **As validações nos DTOs foram aprimoradas** com a adição de novas constraints e mensagens de erro mais informativas.
-
-## Conclusão
-
-A **Sprint 2 demonstra um avanço notável em relação à Sprint 1**. As melhorias implementadas tornam a aplicação mais robusta, escalável, segura e fácil de manter. A atenção aos detalhes na modelagem de dados, design da API, organização do código, documentação e validações demonstram um compromisso com a qualidade da aplicação.

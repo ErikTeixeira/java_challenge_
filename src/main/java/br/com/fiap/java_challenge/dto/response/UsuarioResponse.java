@@ -2,7 +2,7 @@ package br.com.fiap.java_challenge.dto.response;
 
 import lombok.Builder;
 
-import java.util.Collection;
+import java.util.List;
 
 @Builder
 public record UsuarioResponse(
@@ -10,10 +10,7 @@ public record UsuarioResponse(
         String username,
         String password,
         PessoaResponse pessoa,
-
-        Collection<EstabelecimentoResponse> estabelecimento,
-
+        List<EstabelecimentoResponse> estabelecimentos,
         PreferenciaViagemResponse preferenciaViagem
-
 ) {
 }

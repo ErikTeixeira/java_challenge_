@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-
 @Entity
 @Table(name = "TB_ESTABELECIMENTO")
 public class Estabelecimento {
@@ -31,6 +29,4 @@ public class Estabelecimento {
     @Enumerated(EnumType.STRING)
     @Column(name = "TP_ESTABELECIMENTO", nullable = false)
     private TipoEstabelecimento tipo;
-
-
 }

@@ -16,15 +16,14 @@ public class PessoaService implements ServiceDTO<Pessoa, PessoaRequest, PessoaRe
     @Autowired
     private PessoaRepository repo;
 
-
     @Override
     public Collection<Pessoa> findAll(Example<Pessoa> example) {
-        return repo.findAll( example );
+        return repo.findAll(example);
     }
 
     @Override
     public Pessoa findById(Long id) {
-        return repo.findById( id ).orElse( null );
+        return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -35,22 +34,21 @@ public class PessoaService implements ServiceDTO<Pessoa, PessoaRequest, PessoaRe
     @Override
     public Pessoa toEntity(PessoaRequest dto) {
         return Pessoa.builder()
-                .nome( dto.nome() )
-                .sobrenome( dto.sobrenome() )
-                .dataNascimento( dto.dataNascimento() )
-                .email( dto.email() )
+                .nome(dto.nome())
+                .sobrenome(dto.sobrenome())
+                .dataNascimento(dto.dataNascimento())
+                .email(dto.email())
                 .build();
     }
 
     @Override
     public PessoaResponse toResponse(Pessoa e) {
-
         return PessoaResponse.builder()
-                .id( e.getId() )
-                .nome( e.getNome() )
-                .sobrenome( e.getSobrenome() )
-                .dataNascimento( e.getDataNascimento() )
-                .email( e.getEmail() )
+                .id(e.getId())
+                .nome(e.getNome())
+                .sobrenome(e.getSobrenome())
+                .dataNascimento(e.getDataNascimento())
+                .email(e.getEmail())
                 .build();
     }
 }
