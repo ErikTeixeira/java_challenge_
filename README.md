@@ -73,6 +73,8 @@ Certifique-se de que o Maven e o Java estão corretamente instalados e configura
 
 ## Vídeo da Proposta Tecnológica
 
+**Link da Sprint 3:**
+    * https://youtu.be/lV95820MN6k
 **Link da Sprint 2:**
     * https://youtu.be/JiGy_ohObWo
 
