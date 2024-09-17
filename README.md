@@ -54,3 +54,6 @@ Caso o aplicativo não funcione corretamente, volte para o Log Stream e veja os 
 caso sejá necessário, login e senha do azure com a aplicação:
 rm551456@fiap.com.br
 Gui22954611!
+
+https://youtu.be/oPxCVkh_Bjs
+https://youtu.be/HjIsqN7AJR4
